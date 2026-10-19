@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kai "Vex" Mercer | Senior Game Developer & Technical Artist</title>
+  <meta name="description" content="Portfolio of Kai Mercer, Senior Game Developer & Technical Artist specializing in Unreal Engine 5, C++, Unity, physics systems, and real-time shaders.">
+  <meta name="keywords" content="Game Developer, Unreal Engine 5, Unity, C++, Gameplay Engineer, Tech Art, Shaders, Portfolio">
+  <meta name="author" content="Kai Mercer">
+  <meta property="og:title" content="Kai 'Vex' Mercer - Senior Game Developer Portfolio">
+  <meta property="og:description" content="Explore AAA & indie game projects, gameplay engineering case studies, and interactive playable demos.">
+  <meta property="og:image" content="assets/images/chronos-protocol.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@500;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+</head>
+<body class="cyber-theme">
+  <!-- Interactive Particle & Grid Canvas Background -->
+  <canvas id="bgCanvas" class="background-canvas"></canvas>
+
+  <!-- Ambient CRT Scanline Overlay -->
+  <div class="crt-scanlines" aria-hidden="true"></div>
+
+  <!-- HUD Top Bar -->
+  <header class="hud-header" id="hudHeader">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo" id="brandLogo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">KAI.DEV</span>
+        <span class="logo-bracket">]</span>
+        <span class="logo-badge">LVL.99</span>
+      </a>
+
+      <!-- Status Ticker -->
+      <div class="hud-status-strip">
+        <div class="status-indicator live">
+          <span class="pulse-dot"></span>
+          <span class="status-text">STATUS: OPEN FOR OPPORTUNITIES</span>
+        </div>
+        <div class="fps-counter" id="fpsDisplay">FPS: 60</div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Arsenal</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Timeline</a>
+        <a href="#arcade" class="nav-link highlight">Arcade Lab</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Action Utilities -->
+      <div class="nav-utilities">
+        <button id="sfxToggleBtn" class="utility-btn" title="Toggle UI Sound Effects" aria-label="Toggle SFX">
+          <svg class="icon-speaker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path class="sfx-waves" d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <span class="btn-label" id="sfxStatus">SFX: ON</span>
+        </button>
+
+        <button id="terminalToggleBtn" class="utility-btn terminal-btn" title="Open Dev Console (~)" aria-label="Open Terminal">
+          <span class="term-prompt">&gt;_</span>
+          <span class="btn-label">CONSOLE</span>
+        </button>
+
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="cyber-badge">
+            <span class="badge-icon">⚡</span>
+            <span>LEAD GAMEPLAY ENGINEER &bull; TECH ARTIST</span>
+          </div>
+
+          <h1 class="hero-title">
+            ENGINEERING <span class="text-gradient-cyan">WORLDS.</span><br>
+            REDEFINING <span class="text-gradient-purple">PHYSICS & PLAY.</span>
+          </h1>
+
+          <p class="hero-lead">
+            Hi, I'm <strong class="text-glow">Kai Mercer</strong>. I architect combat mechanics, custom compute shaders, 
+            and real-time simulation systems in <strong>Unreal Engine 5 (C++)</strong> and <strong>Unity</strong>. 
+            Blending hardcore systems programming with artistic flair to build games that feel exhilarating to touch.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary" id="btnExploreProjects">
+              <span class="btn-glitch-text">EXPLORE PROJECTS</span>
+              <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+
+            <a href="#arcade" class="btn btn-secondary" id="btnPlayArcade">
+              <span class="btn-icon">🕹️</span>
+              <span>PLAY MINI-GAME</span>
+            </a>
+
+            <a href="#contact" class="btn btn-ghost" id="btnGetInTouch">
+              <span>GET IN TOUCH</span>
+            </a>
+          </div>
+
+          <!-- Quick Stats Cards -->
+          <div class="hero-stats-bar">
+            <div class="stat-card">
+              <div class="stat-num" data-target="8">8+</div>
+              <div class="stat-label">Years Game Dev</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-target="6">6</div>
+              <div class="stat-label">Shipped Titles</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-target="2">2.1M+</div>
+              <div class="stat-label">Total Players</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">99.8%</div>
+              <div class="stat-label">Target 60/120 FPS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Showcase -->
+        <div class="hero-visual">
+          <div class="hud-frame">
+            <div class="corner-bracket top-left"></div>
+            <div class="corner-bracket top-right"></div>
+            <div class="corner-bracket bottom-left"></div>
+            <div class="corner-bracket bottom-right"></div>
+            
+            <div class="hud-screen-inner">
+              <img src="assets/images/chronos-protocol.jpg" alt="Chronos Protocol Gameplay Scene" class="hero-preview-img" id="heroPreviewImg">
+              <div class="hud-overlay-tags">
+                <span class="hud-tag"><span class="live-dot"></span> REAL-TIME CAPTURE</span>
+                <span class="hud-tag engine-tag">UNREAL ENGINE 5.4</span>
+              </div>
+              <div class="hud-game-info">
+                <h4 class="hud-project-title">PROJECT: CHRONOS PROTOCOL</h4>
+                <p class="hud-project-desc">Cyberpunk Rogue-Lite Action RPG &bull; Lumen GI &amp; GAS C++</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// IDENTITY &amp; CORE FOCUS</span>
+          <h2 class="section-title">THE ARCHITECT BEHIND THE SCREENS</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-avatar-column">
+            <div class="avatar-hud-wrapper">
+              <div class="avatar-frame">
+                <img src="assets/images/avatar.jpg" alt="Kai Mercer Game Developer Portrait" class="avatar-img">
+                <div class="avatar-glow-ring"></div>
+              </div>
+              <div class="developer-meta-card">
+                <div class="meta-row">
+                  <span class="meta-label">CODENAME:</span>
+                  <span class="meta-value text-cyan">Vex / Mercer</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">LOCATION:</span>
+                  <span class="meta-value">San Francisco, CA (Remote Ready)</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">CURRENT ROLE:</span>
+                  <span class="meta-value text-purple">Sr. Gameplay Engineer</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">CLEARANCE:</span>
+                  <span class="meta-value text-emerald">Commercial &amp; AAA Shipped</span>
+                </div>
+              </div>
+
+              <div class="resume-download-box">
+                <a href="#contact" class="btn btn-outline full-width" id="downloadResumeBtn">
+                  <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>REQUEST CURRICULUM VITAE</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-text-column">
+            <h3 class="about-subtitle">Bridging the Gap Between Extreme Math &amp; Pure Game Feel</h3>
+            <p class="paragraph">
+              I am a gameplay programmer and technical artist with over <strong>8 years of experience</strong> crafting 
+              both high-octane indie darlings and commercial AA/AAA titles. My passion lives at the intersection of 
+              deep systems engineering (C++, memory optimization, multi-threaded physics) and visceral game feel (camera shake curves, 
+              hit-stop micro-pauses, procedural recoil, and HLSL compute shaders).
+            </p>
+            <p class="paragraph">
+              Having shipped games across PC (Steam), PlayStation 5, and Xbox Series X, I understand the rigor required to keep complex 
+              gameplay systems executing at strict 16.6ms / 8.3ms frame budgets. Whether designing modular skill trees with Unreal's 
+              Gameplay Ability System (GAS), profiling rendering bottlenecks in RenderDoc, or writing deterministic client-predicted 
+              netcode, my goal is always player immersion.
+            </p>
+
+            <!-- Pillar Cards -->
+            <div class="pillars-grid">
+              <div class="pillar-card">
+                <div class="pillar-icon">⚙️</div>
+                <h4>High-Performance C++</h4>
+                <p>Data-Oriented Design (DOD), custom memory allocators, and cache-friendly entity architectures.</p>
+              </div>
+
+              <div class="pillar-card">
+                <div class="pillar-icon">✨</div>
+                <h4>Technical Art &amp; Shaders</h4>
+                <p>Custom HLSL/GLSL shaders, Niagara VFX systems, procedural mesh generation, and volumetric lighting.</p>
+              </div>
+
+              <div class="pillar-card">
+                <div class="pillar-icon">🎮</div>
+                <h4>Visceral Game Feel</h4>
+                <p>Responsive input buffers, motion-matching animation graphs, ragdoll blending, and impactful screen juice.</p>
+              </div>
+
+              <div class="pillar-card">
+                <div class="pillar-icon">🌐</div>
+                <h4>Multiplayer &amp; Netcode</h4>
+                <p>Client-side prediction, entity interpolation, lag compensation, and rollback state synchronization.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS & ARSENAL SECTION -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">// TECH ARSENAL</span>
+          <h2 class="section-title">ENGINEERING &amp; CREATIVE STACK</h2>
+          <div class="section-line center"></div>
+          <p class="section-desc">Battle-tested tools, game engines, and languages used across commercial pipelines.</p>
+        </div>
+
+        <div class="skills-category-tabs">
+          <button class="skill-tab active" data-category="all">ALL TECH</button>
+          <button class="skill-tab" data-category="engines">ENGINES &amp; FRAMEWORKS</button>
+          <button class="skill-tab" data-category="languages">LANGUAGES</button>
+          <button class="skill-tab" data-category="systems">GAMEPLAY SYSTEMS</button>
+          <button class="skill-tab" data-category="art-tools">GRAPHICS &amp; DCC</button>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Unreal Engine 5 -->
+          <div class="skill-card" data-category="engines">
+            <div class="skill-header">
+              <div class="skill-title-group">
+                <span class="skill-glyph">UE5</span>
+                <h4>Unreal Engine 5.1 - 5.4</h4>
+              </div>
+              <span class="skill-level-badge">95%</span>
+            </div>
+            <p class="skill-desc">C++, Blueprints, Gameplay Ability System (GAS), Enhanced Input, Niagara, Nanite &amp; Lumen.</p>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 95%;"></div></div>
+          </div>
+
+          <!-- C++ -->
+          <div class="skill-card" data-category="languages">
+            <div class="skill-header">
+              <div class="skill-title-group">
+                <span class="skill-glyph">C++</span>
+                <h4>Modern C++ (17/20)</h4>
+              </div>
+              <span class="skill-level-badge">94%</span>
+            </div>
+            <p class="skill-desc">Memory management, SIMD vectorization, cache coherence, multithreading, templates.</p>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 94%;"></div></div>
+          </div>
+
+          <!-- Unity -->
+          <div class="skill-card" data-category="engines">
+            <div class="skill-header">
+              <div class="skill-title-group">
+                <span class="skill-glyph">U3D</span>
+                <h4>Unity (URP / HDRP)</h4>
+              </div>
+              <span class="skill-level-badge">90%</span>
+            </div>
+            <p class="skill-desc">DOTS / ECS, Job System, Burst Compiler, Shader Graph, Cinemachine, Addressables.</p>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 90%;"></div></div>
+          </div>
+
+          <!-- C# -->
+          <div class="skill-card" data-category="languages">
+            <div class="skill-header">
+              <div class="skill-title-group">
+                <span class="skill-glyph">C#</span>
+                <h4>C# &amp; .NET</h4>
+              </div>
+              <span class="skill-level-badge">92%</span>
+            </div>
+            <p class="skill-desc">Event-driven architectures, async/await pipelines, reflection, editor tooling scripting.</p>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 92%;"></div></div>
+          </div>
+
+          <!-- Shaders & HLSL -->
+          <div class="skill-card" data-category="languages art-tools">
+            <div class="skill-header">
+              <div class="skill-title-group">
+                <span class="skill-glyph">HLSL</span>
+                <h4>HLSL / GLSL Shaders</h4>
+              </div>
+              <span class="skill-level-badge">88%</span>
+            </div>
+            <p class="skill-desc">Ray-marching, screen-space effects, post-processing filters, custom lighting models.</p>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 88%;"></div></div>
+          </div>
+
+          <!-- AI & Behavior Trees -->
+          <div class="skill-card" data-category="systems">
+            <div class="skill-header">
+              <div class="skill-title-group">
+                <span class="skill-glyph">AI</span>
+                <h4>Combat &amp; Enemy AI</h4>
+              </div>
+              <span class="skill-level-badge">91%</span>
+            </div>
+            <p class="skill-desc">Behavior Trees, State Machines (HFSM), EQS (Environment Query System), NavMesh hacking.</p>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 91%;"></div></div>
+          </div>
+
+          <!-- Physics & Collision -->
+          <div class="skill-card" data-category="systems">
+            <div class="skill-header">
+              <div class="skill-title-group">
+                <span class="skill-glyph">PHY</span>
+                <h4>Chaos &amp; PhysX Systems</h4>
+              </div>
+              <span class="skill-level-badge">89%</span>
+            </div>
+            <p class="skill-desc">Custom character controllers, cloth &amp; rigid body dynamics, vehicle suspension math.</p>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 89%;"></div></div>
+          </div>
+
+          <!-- Blender & Substance -->
+          <div class="skill-card" data-category="art-tools">
+            <div class="skill-header">
+              <div class="skill-title-group">
+                <span class="skill-glyph">DCC</span>
+                <h4>Blender &amp; Substance Painter</h4>
+              </div>
+              <span class="skill-level-badge">84%</span>
+            </div>
+            <p class="skill-desc">Hard-surface modeling, UV unwrapping, PBR material creation, rigging, export pipelines.</p>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 84%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS SHOWCASE -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="header-left">
+            <span class="section-tag">// SHIPPED &amp; IN-DEVELOPMENT</span>
+            <h2 class="section-title">FEATURED GAME TITLES</h2>
+          </div>
+          <div class="project-filter-controls">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="ue5">Unreal Engine 5</button>
+            <button class="filter-btn" data-filter="unity">Unity</button>
+            <button class="filter-btn" data-filter="action">Action / RPG</button>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: Chronos Protocol -->
+          <article class="project-card" data-category="ue5 action">
+            <div class="project-thumb-box">
+              <img src="assets/images/chronos-protocol.jpg" alt="Chronos Protocol Screenshot" class="project-img">
+              <div class="project-badges-overlay">
+                <span class="badge engine-ue5">UE5.4 &bull; C++</span>
+                <span class="badge status-released">SHIPPED 2024</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta-line">
+                <span class="project-genre">CYBERPUNK ACTION ROGUE-LITE</span>
+                <span class="project-platforms">STEAM &bull; PS5 &bull; XBOX</span>
+              </div>
+              <h3 class="project-title">Chronos Protocol</h3>
+              <p class="project-description">
+                High-speed sci-fi melee action title featuring time-manipulation combat, bullet-hell deflection mechanics, 
+                and dynamic procedural neon districts powered by Unreal Engine 5.
+              </p>
+              <div class="tech-tag-list">
+                <span class="tech-tag">C++ Core</span>
+                <span class="tech-tag">Gameplay Ability System (GAS)</span>
+                <span class="tech-tag">Lumen GI</span>
+                <span class="tech-tag">Motion Matching</span>
+                <span class="tech-tag">RenderDoc Profiling</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="chronos">
+                  <span>VIEW TECHNICAL CASE STUDY</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Aetheria Echoes of the Void -->
+          <article class="project-card" data-category="unity action">
+            <div class="project-thumb-box">
+              <img src="assets/images/aetheria-void.jpg" alt="Aetheria Game Screenshot" class="project-img">
+              <div class="project-badges-overlay">
+                <span class="badge engine-unity">UNITY 6 &bull; C#</span>
+                <span class="badge status-released">SHIPPED 2023</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta-line">
+                <span class="project-genre">ATMOSPHERIC SCI-FI EXPLORATION</span>
+                <span class="project-platforms">STEAM &bull; NINTENDO SWITCH</span>
+              </div>
+              <h3 class="project-title">Aetheria: Echoes of the Void</h3>
+              <p class="project-description">
+                Explore monolithic extraterrestrial ruins in a dying star system. Engineered gravity-inversion traversal, 
+                custom volumetric celestial nebulae, and resonance acoustic environmental puzzles.
+              </p>
+              <div class="tech-tag-list">
+                <span class="tech-tag">C# Custom Character Controller</span>
+                <span class="tech-tag">Volumetric Shaders</span>
+                <span class="tech-tag">DOTS / Jobs</span>
+                <span class="tech-tag">FMOD Dynamic Audio</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="aetheria">
+                  <span>VIEW TECHNICAL CASE STUDY</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Shadowfang Rebirth -->
+          <article class="project-card" data-category="ue5 action">
+            <div class="project-thumb-box">
+              <img src="assets/images/shadowfang.jpg" alt="Shadowfang Rebirth Screenshot" class="project-img">
+              <div class="project-badges-overlay">
+                <span class="badge engine-ue5">UE5.2 &bull; C++</span>
+                <span class="badge status-released">SHIPPED 2022</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta-line">
+                <span class="project-genre">DARK FANTASY SOULS-LIKE</span>
+                <span class="project-platforms">PC &bull; PLAYSTATION 5</span>
+              </div>
+              <h3 class="project-title">Shadowfang: Rebirth</h3>
+              <p class="project-description">
+                Brutal dark fantasy melee combat with millimeter-precise hitbox detection, directional parrying, 
+                stagger poise calculations, and multi-phase boss state machines with adaptive combat heuristics.
+              </p>
+              <div class="tech-tag-list">
+                <span class="tech-tag">Hierarchical State Machines (HFSM)</span>
+                <span class="tech-tag">Raycast Sweep Tracing</span>
+                <span class="tech-tag">Chaos Destruction</span>
+                <span class="tech-tag">Custom Inverse Kinematics (IK)</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="shadowfang">
+                  <span>VIEW TECHNICAL CASE STUDY</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL TIMELINE WITH HARDCODED DATES -->
+    <section class="section experience-section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// VERIFIED CAREER TRACK</span>
+          <h2 class="section-title">PROFESSIONAL EXPERIENCE &amp; MILESTONES</h2>
+          <div class="section-line"></div>
+          <p class="section-desc">Hardcoded timeline of studio roles, shipped commercial engagements, and industry milestones.</p>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-dot current"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-content-card">
+              <div class="timeline-header">
+                <div class="role-studio">
+                  <h3 class="role-title">Senior Gameplay Engineer</h3>
+                  <div class="studio-name">Mythic Forge Studios &bull; <span class="badge-role">Full-Time</span></div>
+                </div>
+                <div class="timeline-badge-date">
+                  <span class="calendar-icon">📅</span>
+                  <strong>March 15, 2023 &ndash; Present</strong>
+                </div>
+              </div>
+              <div class="timeline-body">
+                <p class="summary">
+                  Leading the core combat and player locomotion strike team for an unannounced AAA Unreal Engine 5 third-person action project.
+                </p>
+                <ul class="achievement-list">
+                  <li>Architected the complete melee combat system in C++ utilizing Unreal's Gameplay Ability System (GAS), supporting over 140 unique abilities with zero replicated desyncs.</li>
+                  <li>Integrated Motion Matching locomotion with layered Pose Search Databases, reducing animation popping by 85% compared to legacy blend spaces.</li>
+                  <li>Spearheaded CPU frame-time profiling with Unreal Insights and Tracy, dropping average gameplay tick overhead from 4.2ms to 1.8ms on PS5 devkits.</li>
+                  <li>Mentored 5 junior and mid-level gameplay engineers in modern C++ idioms, memory profiling, and DOD practices.</li>
+                </ul>
+                <div class="timeline-tags">
+                  <span>UE5.4</span>
+                  <span>C++20</span>
+                  <span>Gameplay Ability System</span>
+                  <span>Motion Matching</span>
+                  <span>Unreal Insights</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-content-card">
+              <div class="timeline-header">
+                <div class="role-studio">
+                  <h3 class="role-title">Gameplay &amp; Systems Programmer</h3>
+                  <div class="studio-name">PixelPulse Interactive &bull; <span class="badge-role">Studio</span></div>
+                </div>
+                <div class="timeline-badge-date">
+                  <span class="calendar-icon">📅</span>
+                  <strong>January 10, 2021 &ndash; February 28, 2023</strong>
+                </div>
+              </div>
+              <div class="timeline-body">
+                <p class="summary">
+                  Shipped the commercial hit <em>Chronos Protocol</em> and managed multi-platform build certification on Steam, PlayStation 5, and Xbox Series X.
+                </p>
+                <ul class="achievement-list">
+                  <li>Engineered custom physics simulation for dynamic projectile deflection, time dilation bubbles, and real-time sliceable volumetric geometry.</li>
+                  <li>Designed modular inventory, equipment crafting, and progression persistence systems using serialized binary save chunks with checksum validation.</li>
+                  <li>Developed custom in-editor visual debugging tools and telemetry dashboard that accelerated level designer iteration loops by 3x.</li>
+                  <li>Collaborated closely with sound designers to build an interactive procedural audio pipeline linking combat velocity to synthesized pitch modulation.</li>
+                </ul>
+                <div class="timeline-tags">
+                  <span>Unreal Engine 4 &amp; 5</span>
+                  <span>C++</span>
+                  <span>Physics / Chaos</span>
+                  <span>Console Certification</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-content-card">
+              <div class="timeline-header">
+                <div class="role-studio">
+                  <h3 class="role-title">Associate Game Engineer</h3>
+                  <div class="studio-name">Orbital Velocity Labs &bull; <span class="badge-role">Full-Time</span></div>
+                </div>
+                <div class="timeline-badge-date">
+                  <span class="calendar-icon">📅</span>
+                  <strong>June 03, 2019 &ndash; December 18, 2020</strong>
+                </div>
+              </div>
+              <div class="timeline-body">
+                <p class="summary">
+                  Core contributor to Unity-based 3D environmental puzzle adventure <em>Aetheria: Echoes of the Void</em>.
+                </p>
+                <ul class="achievement-list">
+                  <li>Programmed custom kinematic character controller supporting smooth spherical gravity on arbitrary planetary surfaces.</li>
+                  <li>Authored HLSL surface and vertex shaders in Unity for interactive alien foliage, procedural crystal growth, and liquid refractions.</li>
+                  <li>Optimized draw calls from 3,200 down to 850 using GPU instancing, texture atlasing, and manual occlusion culling layers.</li>
+                </ul>
+                <div class="timeline-tags">
+                  <span>Unity</span>
+                  <span>C#</span>
+                  <span>HLSL / Shaders</span>
+                  <span>Kinematics</span>
+                  <span>Draw Call Optimization</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4: Education -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-dot education"></div>
+            </div>
+            <div class="timeline-content-card">
+              <div class="timeline-header">
+                <div class="role-studio">
+                  <h3 class="role-title">B.S. in Computer Science &amp; Game Engineering</h3>
+                  <div class="studio-name">California Polytechnic State University (Cal Poly)</div>
+                </div>
+                <div class="timeline-badge-date">
+                  <span class="calendar-icon">🎓</span>
+                  <strong>September 2015 &ndash; May 2019</strong>
+                </div>
+              </div>
+              <div class="timeline-body">
+                <p class="summary">
+                  Graduated Magna Cum Laude (GPA 3.91/4.0). Capstone Project: <em>Real-Time Voxel Octree Destruction Engine</em> written in C++ and OpenGL.
+                </p>
+                <div class="timeline-tags">
+                  <span>Computer Graphics</span>
+                  <span>Linear Algebra</span>
+                  <span>Data Structures &amp; Algorithms</span>
+                  <span>OpenGL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Awards & Industry Grants -->
+        <div class="milestones-box">
+          <h3 class="milestones-title">
+            <span class="trophy-icon">🏆</span> INDUSTRY RECOGNITION &amp; GRANTS (HARDCODED DATES)
+          </h3>
+          <div class="milestones-grid">
+            <div class="milestone-card">
+              <div class="milestone-date">November 14, 2024</div>
+              <h4>Epic MegaGrants Recipient</h4>
+              <p>Awarded $25,000 grant by Epic Games for open-source high-performance procedural animation framework for UE5.</p>
+            </div>
+            <div class="milestone-card">
+              <div class="milestone-date">August 22, 2023</div>
+              <h4>Indie Game Cup: "Best Combat Mechanics"</h4>
+              <p>Winner for <em>Chronos Protocol</em> among 320 international independent game submissions.</p>
+            </div>
+            <div class="milestone-card">
+              <div class="milestone-date">October 10, 2022</div>
+              <h4>Steam Next Fest Top 50 Trending</h4>
+              <p>Reached over 85,000 demo players and 120,000 wishlist additions in a 7-day festival window.</p>
+            </div>
+            <div class="milestone-card">
+              <div class="milestone-date">April 18, 2021</div>
+              <h4>Global Game Jam 1st Place</h4>
+              <p>Ranked #1 out of 45 regional teams with a 48-hour prototype built on custom time-reversal mechanics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE ARCADE LAB (PLAYABLE MINI-GAME) -->
+    <section class="section arcade-section" id="arcade">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">// INTERACTIVE EXPERIMENT</span>
+          <h2 class="section-title">THE ARCADE LAB: NEON DEFENDER</h2>
+          <div class="section-line center"></div>
+          <p class="section-desc">
+            A game developer portfolio isn't complete without playable code! Test your reflexes in this browser-built 60 FPS retro arcade interceptor.
+          </p>
+        </div>
+
+        <div class="arcade-station-frame">
+          <div class="arcade-top-banner">
+            <div class="arcade-lights">
+              <span class="arcade-bulb red"></span>
+              <span class="arcade-bulb yellow"></span>
+              <span class="arcade-bulb green"></span>
+            </div>
+            <div class="arcade-title-text">SYSTEM SIMULATOR // CYBERNETIC COMBAT SUITE</div>
+            <div class="arcade-coin-slot">INSERT COIN [FREE PLAY]</div>
+          </div>
+
+          <div class="arcade-screen-wrap">
+            <canvas id="gameCanvas" width="800" height="480"></canvas>
+            
+            <!-- Game UI Overlay (Start / Pause / Game Over) -->
+            <div class="game-ui-overlay" id="gameOverlay">
+              <div class="overlay-content" id="overlayContent">
+                <h3 class="game-overlay-title">NEON DEFENDER</h3>
+                <p class="game-overlay-subtitle">Intercept hostile energy cores before they breach the grid perimeter.</p>
+                <div class="game-instructions">
+                  <div class="instr-key"><strong>[A] [D]</strong> or <strong>[&larr;] [&rarr;]</strong>: Move Interceptor</div>
+                  <div class="instr-key"><strong>[SPACEBAR]</strong> or <strong>[CLICK]</strong>: Fire Plasma Cannon</div>
+                  <div class="instr-key"><strong>[P]</strong>: Pause / Resume</div>
+                </div>
+                <button class="btn btn-primary btn-arcade-start" id="btnStartGame">
+                  <span>LAUNCH INTERCEPTOR</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="arcade-dashboard">
+            <div class="dash-stat">
+              <span class="dash-label">SCORE</span>
+              <span class="dash-val" id="gameScoreDisplay">00000</span>
+            </div>
+            <div class="dash-stat">
+              <span class="dash-label">HIGH SCORE</span>
+              <span class="dash-val" id="gameHighScoreDisplay">00000</span>
+            </div>
+            <div class="dash-stat">
+              <span class="dash-label">SHIELD INTEGRITY</span>
+              <div class="shield-bar-outer">
+                <div class="shield-bar-inner" id="gameShieldDisplay" style="width: 100%;"></div>
+              </div>
+            </div>
+            <div class="dash-stat">
+              <span class="dash-label">OVERDRIVE</span>
+              <span class="dash-val text-cyan" id="gameWaveDisplay">WAVE 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">// TRANSMISSION LINK</span>
+          <h2 class="section-title">INITIALIZE COLLABORATION</h2>
+          <div class="section-line"></div>
+          <p class="section-desc">Currently open to Senior/Lead Gameplay Engineering, Technical Art consulting, or exciting indie partnerships.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Details Column -->
+          <div class="contact-info-panel">
+            <h3 class="panel-heading">Direct Channels</h3>
+            
+            <div class="channel-card">
+              <div class="channel-icon">📧</div>
+              <div class="channel-details">
+                <span class="channel-title">Direct Inquiries / Email</span>
+                <span class="channel-val" id="emailText">kai.mercer.gamedev@example.com</span>
+              </div>
+              <button class="btn-copy" id="btnCopyEmail" title="Copy Email to Clipboard">
+                <span id="copyFeedback">COPY</span>
+              </button>
+            </div>
+
+            <div class="channel-card">
+              <div class="channel-icon">💬</div>
+              <div class="channel-details">
+                <span class="channel-title">Discord Handle</span>
+                <span class="channel-val">@VexMercer#0001</span>
+              </div>
+              <span class="tag-status">Active</span>
+            </div>
+
+            <div class="channel-card">
+              <div class="channel-icon">📍</div>
+              <div class="channel-details">
+                <span class="channel-title">Timezone &amp; Location</span>
+                <span class="channel-val">Pacific Time (UTC-7) &bull; San Francisco, CA</span>
+              </div>
+            </div>
+
+            <!-- Social Links Grid -->
+            <div class="social-links-grid">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <span class="soc-icon">🐙</span>
+                <span>GitHub</span>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <span class="soc-icon">💼</span>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://artstation.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <span class="soc-icon">🎨</span>
+                <span>ArtStation</span>
+              </a>
+              <a href="https://itch.io" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <span class="soc-icon">🕹️</span>
+                <span>Itch.io</span>
+              </a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <span class="soc-icon">🐦</span>
+                <span>Twitter / X</span>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <span class="soc-icon">▶️</span>
+                <span>YouTube Devlog</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Interactive Contact Form -->
+          <div class="contact-form-panel">
+            <h3 class="panel-heading">Transmit a Message</h3>
+            <form id="contactForm" class="cyber-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="senderName" class="form-label">YOUR NAME / STUDIO *</label>
+                  <input type="text" id="senderName" class="form-input" placeholder="e.g. Respawn Entertainment / Sarah Chen" required>
+                </div>
+                <div class="form-group">
+                  <label for="senderEmail" class="form-label">YOUR EMAIL ADDRESS *</label>
+                  <input type="email" id="senderEmail" class="form-input" placeholder="name@studio.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inquiryType" class="form-label">SUBJECT / PROJECT NATURE *</label>
+                <select id="inquiryType" class="form-input select-input" required>
+                  <option value="fulltime">Full-Time Senior/Lead Gameplay Engineer Role</option>
+                  <option value="contract">Technical Art / Shader Contract Work</option>
+                  <option value="indie">Indie Game Co-Development / Advising</option>
+                  <option value="speaking">Conference Talk / Podcast / Mentorship</option>
+                  <option value="other">General Inquiries / Greetings</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="projectDetails" class="form-label">PROJECT DETAILS &amp; SCOPE *</label>
+                <textarea id="projectDetails" class="form-input form-textarea" rows="4" placeholder="Tell me about your game, timeline, tech stack (UE5, Unity, Custom Engine), and what you need built..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary full-width" id="btnSubmitMessage">
+                <span>TRANSMIT PACKET</span>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+
+              <div id="formFeedback" class="form-feedback hidden"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="cyber-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <span class="footer-brand">KAI MERCER // GAMEPLAY ENGINEERING</span>
+        <p class="footer-copy">&copy; 2026 Kai Mercer. Built with Vanilla Web Standards, HTML5 Canvas, Web Audio API &amp; modern CSS.</p>
+      </div>
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top">
+          <span>RETURN TO TOP</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE PROJECT MODAL -->
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      <div class="modal-content" id="modalDynamicContent">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE TERMINAL CONSOLE -->
+  <div class="terminal-modal" id="terminalModal" aria-hidden="true">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="term-dots">
+          <span class="dot red" id="termCloseDot"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="term-title">KAI-OS v4.2.0 // GAME_DEV_CLI (PRESS ESC TO EXIT)</div>
+        <button class="term-close-btn" id="termCloseBtn">&times;</button>
+      </div>
+      <div class="terminal-body" id="terminalLog">
+        <div class="term-line output">Antigravity GameDev Shell initialized. Type <span class="term-cmd">'help'</span> to see available commands.</div>
+        <div class="term-line output">Type <span class="term-cmd">'dates'</span> to display all professional career milestones.</div>
+      </div>
+      <div class="terminal-input-row">
+        <span class="term-prompt">vex@gamedev:~$</span>
+        <input type="text" id="terminalInput" class="term-input" autocomplete="off" spellcheck="false" placeholder="type 'help', 'projects', 'dates'...">
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio elements & Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
